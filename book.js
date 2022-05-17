@@ -4,8 +4,7 @@ const searchBox = document.getElementById("searchBox");
 const searchBtn = document.getElementById("searchBtn");
 
 // const bookResult = document.getElementById("book-results")
-//default searching
-searchBook("Javascript");
+
 
 //add a event as click on search button to find the books
 searchBtn.addEventListener("click", () => {
@@ -30,15 +29,18 @@ const searchBook = async (book) => {
     const url = `https://openlibrary.org/search.json?q=${book}`
     const res = await fetch(url)
     const data = await res.json()
-    displayBook(data)
+    displayBook(data, book)
 }
 
+//default searching
+searchBook("Javascript");
+
 //define a arrow function to display the searching result on UI
-const displayBook = (data) => {
+const displayBook = (data, searchValue) => {
     const bookArchive = document.getElementById("book-archive")
     if (data.numFound !== 0) {
         bookArchive.innerHTML = ` <div class="alert alert-success" id="search-result--msg" role="alert">
-   <strong>"${searchBox.value}" </strong> ${data.numFound} Results Found and show ${data.docs.length} items
+   <strong>"${searchValue}" </strong> ${data.numFound} Results Found and show ${data.docs.length} items
 </div>`}
     else {
         bookArchive.innerHTML = ` <div class="alert alert-danger" id="search-result--msg" role="alert">
