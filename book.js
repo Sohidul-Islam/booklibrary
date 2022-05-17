@@ -4,7 +4,10 @@ const searchBox = document.getElementById("searchBox");
 const searchBtn = document.getElementById("searchBtn");
 
 // const bookResult = document.getElementById("book-results")
+//default searching
+searchBook("Javascript");
 
+//add a event as click on search button to find the books
 searchBtn.addEventListener("click", () => {
     const spinnerAdding = document.getElementById("book-archive")
     spinnerAdding.innerHTML = `<div class="d-flex justify-content-center align-items-center ">
@@ -22,6 +25,7 @@ searchBtn.addEventListener("click", () => {
 })
 
 
+//define a arrow function to fetch the books through the url
 const searchBook = async (book) => {
     const url = `https://openlibrary.org/search.json?q=${book}`
     const res = await fetch(url)
@@ -29,6 +33,7 @@ const searchBook = async (book) => {
     displayBook(data)
 }
 
+//define a arrow function to display the searching result on UI
 const displayBook = (data) => {
     const bookArchive = document.getElementById("book-archive")
     if (data.numFound !== 0) {
@@ -101,7 +106,7 @@ const displayBook = (data) => {
 
 }
 
-
+//define a arrow funciton to check whether the data is greater than one or not
 const isGreatherone = (data) => {
     if (data !== undefined) {
         if (data.length > 1) return true;
@@ -112,6 +117,7 @@ const isGreatherone = (data) => {
     }
 
 }
+//define a arrow funciton to hanling muliple data to print on UI
 const multipleDataHandler = (data) => {
     let str = ""
     for (const name of data) { str += name + ", " }
