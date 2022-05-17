@@ -1,3 +1,6 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
 #book-searchbox {
   margin: 40px 0px 0px 0px;
 }
